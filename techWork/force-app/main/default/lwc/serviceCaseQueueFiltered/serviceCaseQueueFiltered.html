@@ -1,0 +1,63 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="slds-box slds-theme_shade">
+        <lightning-button-icon  icon-name="utility:refresh" alternative-text="Refresh" class="slds-float_right" onclick={refreshTable}></lightning-button-icon>
+        <div class="exampleHolder" if:true={isLoading}>
+            <lightning-spinner variant="brand" size="large"></lightning-spinner>
+          </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        #
+                    </th>
+                    <th class="" scope="col">
+                        Case Number
+                    </th>
+                    <th class="" scope="col">
+                        Assignee
+                    </th>
+                    <th class="" scope="col">
+                        Case Status
+                    </th>
+                    <th class="" scope="col">
+                        Priority
+                    </th>
+                    <th class="" scope="col">
+                        Origin
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template iterator:it={cases}>
+                    <tr class="slds-hint-parent" key = {it.value.Id}>
+                        <td data-label="#">
+                            <div class="slds-cell-wrap">{it.index}</div>
+                        </td>
+                        <td data-label="Case Number">
+                            <div class="slds-cell-wrap">
+                                <a data-id={it.value.Id} onclick={navigateToCase}>{it.value.CaseNumber}</a>
+                            </div>
+                        </td>
+                        <td data-label= "Assignee">
+                            <div class="slds-cell-wrap">{it.value.Owner.Name}</div>
+                        </td>
+                        <td data-label="Case Status">
+                            <div class="slds-cell-wrap">
+                                <lightning-combobox data-id={it.value.CaseNumber} name="statuses" value={it.value.Status} dropdown-alignment="auto" variant="label-hidden"
+                                options={caseStatuses} onchange={changeStatus}>
+                            </lightning-combobox>
+                            </div>
+                        </td>
+                        <td data-label="Priority">
+                            <div class="slds-cell-wrap">{it.value.Priority}</div>
+                        </td>
+                        <td data-label="Origin">
+                            <div class="slds-cell-wrap">{it.value.Origin}</div>
+                        </td>                       
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>

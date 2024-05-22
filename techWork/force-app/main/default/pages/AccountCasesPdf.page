@@ -1,0 +1,23 @@
+<apex:page controller="AccountCasesPdfCtrl" applyHtmlTag="false" showHeader="false" renderAs="PDF">
+<table style="border-collapse: collapse">
+<tr style="color:#fff; background-color: #ff4500; border: 1px solid rgb(160 160 160)">
+    <th style="padding-left: 0px; padding-right: 20px">Account Name</th>
+    <th style="text-align:right; padding-left: 0px; padding-right: 20px">Account Owner</th>
+    <th style="text-align:right; padding-left: 0px; padding-right: 20px">Case number</th>
+    <th style="text-align:right; padding-left: 0px; padding-right: 20px">Status</th>
+    <th style="text-align:right; padding-left: 0px; padding-right: 20px">Priority</th>
+    <th style="text-align:right; padding-left: 0px; padding-right: 20px">Origin</th>
+</tr>
+<apex:repeat value="{!casesFinded}" var="cases">
+<tr >
+    <td style="border: 1px solid rgb(160 160 160);">{!cases.Account.Name}</td>
+    <td style="border: 1px solid rgb(160 160 160);">{!cases.Owner.Name}</td>
+    <td style="border: 1px solid rgb(160 160 160);">{!cases.CaseNumber}</td>
+    <td style="border: 1px solid rgb(160 160 160);">{!cases.Status}</td>
+    <td style="border: 1px solid rgb(160 160 160);">{!cases.Priority}</td>
+    <td style="border: 1px solid rgb(160 160 160);">{!cases.Origin}</td>
+
+</tr>
+</apex:repeat>
+</table>
+</apex:page>    
